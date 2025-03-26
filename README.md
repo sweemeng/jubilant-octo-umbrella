@@ -22,17 +22,17 @@ Section 3
 
 10. Deployment process
 
-a) kubectl apply -k kubernetes
-b) kubectl get pods
-c) kubectl logs pods-id-manually-copied
-d) kubectl scale deployment apps --replicas=5
+- kubectl apply -k kubernetes
+- kubectl get pods
+- kubectl logs pods-id-manually-copied
+- kubectl scale deployment apps --replicas=5
 
 Bonus
 
 11. `section_two/cronjob.yaml`
 12. A few thing i will do better
 
-a) Add monitoring on the cluster, maybe something with opentelemetry
-b) Use secret, i would think a proper secret store like vault might be a good idea
-c) Limit access to cluster, only system use can deploy e.g CI system
+- Add monitoring on the cluster, maybe something with opentelemetry
+- Use secret, i would think a proper secret store like vault might be a good idea
+- Limit access to cluster, only system use can deploy e.g CI system
 
