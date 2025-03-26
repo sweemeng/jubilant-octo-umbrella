@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: update-db
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dbbackup
+            image: postgres
+            command: 
+              - /bin/sh
+              - -c
+              - pg_dumpall -d $DB_CONN
+            env:
+              - name: DB_CONN
+                valueFrom:
+                  secretKeyRef:
+                    name: db_conn
+                    key: db_conn
+            volumeMounts:
+            - name: dbbackups
+              mountPath: /db_backup
+          restartPolicy: OnFailure
+          volumes:
+          - name: dbbackups
+            persistentVolumeClaim:
+              claimName: dbbackups-pv-claim
+
